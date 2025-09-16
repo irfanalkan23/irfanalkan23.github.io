@@ -7,15 +7,13 @@
         body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
         h1, h2 { color: #2c3e50; text-align: center; }
         .contact { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 20px; }
-        .language-switcher { text-align: right; margin-bottom: 20px; }
-        .language-switcher a { color: #3498db; text-decoration: none; font-weight: bold; }
         .language-section { margin-bottom: 40px; }
     </style>
 </head>
 <body>
     <img src="https://raw.githubusercontent.com/irfanalkan23/irfanalkan23.github.io/main/logo.png" alt="Logo" style="display:block; margin:20px auto; max-width:150px;">
     
-    <div class="language-section">
+    <div id="turkish-section" class="language-section">
         <h1>Gizlilik Politikası</h1>
         <p><strong>Son güncelleme:</strong> 16 Eylül 2025</p>
 
@@ -39,7 +37,7 @@
     
     <hr>
 
-    <div class="language-section">
+    <div id="english-section" class="language-section">
         <h2>Privacy Policy</h2>
         <p><strong>Last updated:</strong> September 16, 2025</p>
 
@@ -60,5 +58,25 @@
             <p>For questions, please contact us using the developer contact information in the "Developer" section on Google Play.</p>
         </div>
     </div>
+    
+    <script>
+        // Kullanıcının cihaz dilini alır (örn. "tr-TR" veya "en-US")
+        const userLanguage = navigator.language || navigator.userLanguage;
+        
+        // Dil bölümlerini HTML'den seçer
+        const turkishSection = document.getElementById('turkish-section');
+        const englishSection = document.getElementById('english-section');
+        
+        // Kullanıcının diline göre hangi bölümün gösterileceğini ayarlar
+        if (userLanguage.startsWith('tr')) {
+            // Dil Türkçe ise, Türkçe bölümü göster
+            turkishSection.style.display = 'block';
+            englishSection.style.display = 'none';
+        } else {
+            // Diğer tüm dillerde (İngilizce dahil) İngilizce bölümü göster
+            turkishSection.style.display = 'none';
+            englishSection.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
