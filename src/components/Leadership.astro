@@ -1,0 +1,57 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import { leadershipData } from "../data/leadership";
+---
+
+<section id="leadership" class="py-16 md:py-24 border-t border-slate-800/80 bg-slate-900/30 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <SectionHeading 
+      eyebrow="Instruction & Mentorship"
+      title={leadershipData.headline}
+      description={leadershipData.subheadline}
+    />
+
+    <!-- Mentorship Metric Highlights -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+      {leadershipData.stats.map((stat) => (
+        <div class="cyber-card rounded-xl p-6 text-center">
+          <div class="text-3xl sm:text-4xl font-extrabold font-mono text-sky-400">
+            {stat.value}
+          </div>
+          <div class="text-xs sm:text-sm font-semibold text-slate-300 mt-2">
+            {stat.label}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Pillars Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {leadershipData.pillars.map((pillar) => (
+        <div class="cyber-card rounded-2xl p-6 flex flex-col justify-between">
+          <div class="space-y-4">
+            <h3 class="text-base sm:text-lg font-bold text-slate-100 leading-snug">
+              {pillar.title}
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              {pillar.description}
+            </p>
+            
+            <ul class="space-y-2 pt-2 border-t border-slate-800/80 text-xs text-slate-300">
+              {pillar.items.map((item) => (
+                <li class="flex items-start gap-2">
+                  <svg class="w-3.5 h-3.5 text-sky-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

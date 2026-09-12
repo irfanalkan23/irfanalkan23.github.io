@@ -1,0 +1,36 @@
+---
+---
+
+<button
+  id="back-to-top"
+  type="button"
+  aria-label="Back to top of page"
+  class="fixed bottom-6 right-6 z-40 p-3 rounded-xl bg-slate-900/90 text-sky-400 border border-slate-700/80 hover:border-sky-400 hover:bg-slate-800 shadow-xl transition-all duration-300 opacity-0 pointer-events-none translate-y-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+>
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.getElementById("back-to-top");
+
+  function handleScroll() {
+    if (window.scrollY > 400) {
+      btn?.classList.remove("opacity-0", "pointer-events-none", "translate-y-4");
+      btn?.classList.add("opacity-100", "pointer-events-auto", "translate-y-0");
+    } else {
+      btn?.classList.add("opacity-0", "pointer-events-none", "translate-y-4");
+      btn?.classList.remove("opacity-100", "pointer-events-auto", "translate-y-0");
+    }
+  }
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+
+  btn?.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>

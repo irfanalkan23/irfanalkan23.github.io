@@ -1,0 +1,54 @@
+---
+import { siteConfig } from "../data/config";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div class={`relative group ${className}`}>
+  <!-- Glowing border backplate -->
+  <div class="absolute -inset-1.5 bg-gradient-to-tr from-sky-500/20 via-cyan-400/20 to-blue-600/20 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition duration-500"></div>
+  
+  <!-- Outer Frame -->
+  <div class="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden bg-slate-900/90 border border-slate-700/60 shadow-2xl flex items-center justify-center p-2">
+    
+    <!-- Real Profile Image with graceful fallback -->
+    <img 
+      id="profile-img"
+      src={siteConfig.profilePhotoPath}
+      alt="Irfan Alkan - SOC Team Lead & Senior SOC Analyst" 
+      class="w-full h-full object-cover rounded-xl transition duration-500 group-hover:scale-[1.02]"
+      loading="eager"
+      width="320"
+      height="320"
+      onerror="this.style.display='none'; document.getElementById('profile-placeholder').style.display='flex';"
+    />
+
+    <!-- Neutral Vector Placeholder (shown if /images/profile.jpg is missing) -->
+    <div 
+      id="profile-placeholder" 
+      class="hidden w-full h-full flex-col items-center justify-center rounded-xl bg-gradient-to-b from-slate-800/80 to-slate-950/90 p-6 text-center border border-slate-700/50"
+    >
+      <div class="w-24 h-24 rounded-full bg-sky-950/60 border border-sky-500/40 flex items-center justify-center mb-4 text-sky-400 shadow-inner">
+        <!-- Shield with User Silhouette -->
+        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      </div>
+      <span class="text-lg font-semibold text-slate-200 tracking-wide">Irfan Alkan</span>
+      <span class="text-xs text-sky-400 font-mono mt-1">SOC Operations & IR</span>
+      <p class="text-[11px] text-slate-400 mt-3 max-w-[200px] leading-tight">
+        Add photo at: <br/><code class="text-slate-300 bg-slate-900 px-1 py-0.5 rounded text-[10px]">/public/images/profile.jpg</code>
+      </p>
+    </div>
+
+    <!-- Corner accent decors -->
+    <div class="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-sky-400/60 rounded-tl pointer-events-none"></div>
+    <div class="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-sky-400/60 rounded-tr pointer-events-none"></div>
+    <div class="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-sky-400/60 rounded-bl pointer-events-none"></div>
+    <div class="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-sky-400/60 rounded-br pointer-events-none"></div>
+  </div>
+</div>

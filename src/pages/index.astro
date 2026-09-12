@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Metrics from "../components/Metrics.astro";
+import ExperienceTimeline from "../components/ExperienceTimeline.astro";
+import Skills from "../components/Skills.astro";
+import Projects from "../components/Projects.astro";
+import Leadership from "../components/Leadership.astro";
+import Certifications from "../components/Certifications.astro";
+import Education from "../components/Education.astro";
+import Contact from "../components/Contact.astro";
+import { siteConfig } from "../data/config";
+---
+
+<Layout title={siteConfig.title} description={siteConfig.description}>
+  <Hero />
+  <About />
+  <Metrics />
+  <ExperienceTimeline />
+  <Skills />
+  <Projects />
+  <Leadership />
+  <Certifications />
+  <Education />
+  <Contact />
+</Layout>

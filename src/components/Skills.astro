@@ -1,0 +1,63 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import { skillsData } from "../data/skills";
+---
+
+<section id="skills" class="py-16 md:py-24 border-t border-slate-800/80 bg-slate-900/20 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <SectionHeading 
+      eyebrow="Core Competencies"
+      title="Technical Skills & Tooling"
+      description="Categorized operational competencies across SIEM systems, endpoint telemetry, incident investigation, and network analysis."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {skillsData.map((category) => (
+        <div class="cyber-card rounded-2xl p-6 flex flex-col justify-between group">
+          
+          <div>
+            <!-- Category Header -->
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-sky-950/70 border border-sky-500/30 flex items-center justify-center text-sky-400 group-hover:border-sky-400 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+              </div>
+              <h3 class="text-base font-bold text-slate-100 group-hover:text-sky-300 transition">
+                {category.title}
+              </h3>
+            </div>
+
+            <!-- Description -->
+            <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+              {category.description}
+            </p>
+
+            <!-- Skills List / Badges -->
+            <div class="flex flex-wrap gap-2">
+              {category.skills.map((skill) => (
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs bg-slate-900/90 text-slate-200 border border-slate-700/60 group-hover:border-slate-600 transition">
+                  <span class="font-medium">{skill.name}</span>
+                  {skill.note && (
+                    <span class="text-[10px] font-mono text-sky-400 bg-sky-950/70 px-1 py-0.2 rounded border border-sky-800/40">
+                      {skill.note}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Bottom subtle indicator -->
+          <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+            <span>{category.skills.length} competencies</span>
+            <span class="text-sky-400/80">Operational</span>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

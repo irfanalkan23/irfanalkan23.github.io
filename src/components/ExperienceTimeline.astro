@@ -1,0 +1,100 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import { experienceData } from "../data/experience";
+---
+
+<section id="experience" class="py-16 md:py-24 border-t border-slate-800/80 bg-slate-950/60 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <SectionHeading 
+      eyebrow="Career Progression"
+      title="Professional Experience"
+      description="Progressive four-year Security Operations Center tenure advancing through foundational alert triage, advanced L2 incident escalations, and technical team leadership."
+    />
+
+    <!-- Company Header Banner -->
+    <div class="mb-10 cyber-card rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-l-4 border-l-sky-400">
+      <div>
+        <div class="flex items-center gap-3">
+          <h3 class="text-xl sm:text-2xl font-bold text-slate-100">{experienceData.company}</h3>
+          <span class="px-2.5 py-0.5 text-xs font-mono font-medium text-sky-400 bg-sky-950/70 border border-sky-800/60 rounded">
+            {experienceData.employmentType}
+          </span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1">
+          {experienceData.location}
+        </p>
+      </div>
+      <div class="text-left sm:text-right">
+        <span class="text-xs uppercase font-mono text-slate-400 block">Tenure</span>
+        <span class="text-sm font-semibold text-slate-200">{experienceData.overallPeriod}</span>
+      </div>
+    </div>
+
+    <!-- Timeline Container -->
+    <div class="relative pl-6 sm:pl-8 lg:pl-10 space-y-10 sm:space-y-12 before:content-[''] before:absolute before:left-2 sm:before:left-3 before:top-3 before:bottom-3 before:w-0.5 before:bg-gradient-to-b before:from-sky-400 before:via-sky-600/40 before:to-slate-800">
+      
+      {experienceData.roles.map((item, idx) => (
+        <div class="relative group">
+          
+          <!-- Timeline Node Marker -->
+          <div class={`absolute -left-[27px] sm:-left-[35px] lg:-left-[43px] top-1.5 w-4 h-4 rounded-full border-2 transition duration-300 ${
+            item.isCurrent 
+              ? "bg-sky-400 border-slate-900 shadow-[0_0_12px_rgba(56,189,248,0.8)]" 
+              : "bg-slate-900 border-slate-600 group-hover:border-sky-400"
+          }`}></div>
+
+          <!-- Role Content Card -->
+          <div class="cyber-card rounded-xl p-6 sm:p-7 space-y-4">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800/80 pb-4">
+              <div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <h4 class="text-lg sm:text-xl font-bold text-slate-100">
+                    {item.role}
+                  </h4>
+                  {item.isCurrent && (
+                    <span class="px-2 py-0.5 text-[11px] font-mono font-medium text-emerald-300 bg-emerald-950/70 border border-emerald-800/60 rounded-full">
+                      Current Role
+                    </span>
+                  )}
+                </div>
+                <p class="text-xs text-slate-400 font-mono mt-1">
+                  CYDEO • {item.period}
+                </p>
+              </div>
+            </div>
+
+            <!-- Bullet Points -->
+            <ul class="space-y-2.5 text-sm text-slate-300">
+              {item.points.map((point) => (
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-4 h-4 text-sky-400 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="leading-relaxed">{point}</span>
+                </li>
+              ))}
+            </ul>
+
+            <!-- Relevant Technologies / Focus -->
+            {item.technologies && (
+              <div class="pt-3 border-t border-slate-800/60 flex flex-wrap gap-1.5 items-center">
+                <span class="text-[11px] font-mono text-slate-400 mr-1">Tools & Focus:</span>
+                {item.technologies.map((tech) => (
+                  <span class="px-2 py-0.5 text-xs rounded bg-slate-900/90 text-slate-300 border border-slate-800 font-mono">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
+
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+</section>

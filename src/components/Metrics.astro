@@ -1,0 +1,46 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import { metricsData } from "../data/metrics";
+---
+
+<section id="metrics" class="py-16 md:py-20 border-t border-slate-800/80 bg-slate-900/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <SectionHeading 
+      eyebrow="Operational Scope"
+      title="SOC Experience Metrics"
+      description="Verifiable hands-on investigative volume, tool utilization, and mentoring experience across four years of Security Operations Center activities."
+    />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      {metricsData.map((item) => (
+        <div class="cyber-card rounded-xl p-5 sm:p-6 flex flex-col justify-between group">
+          <div class="space-y-2">
+            {item.category && (
+              <span class="text-[11px] font-mono uppercase tracking-wider text-sky-400/90 font-medium">
+                {item.category}
+              </span>
+            )}
+            <div class="text-3xl sm:text-4xl font-black text-slate-100 font-mono tracking-tight group-hover:text-sky-300 transition-colors">
+              {item.value}
+            </div>
+            <h3 class="text-sm font-semibold text-slate-200 leading-snug">
+              {item.label}
+            </h3>
+          </div>
+          {item.detail && (
+            <p class="text-xs text-slate-400 mt-4 pt-3 border-t border-slate-800/80 leading-relaxed">
+              {item.detail}
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- Conservative estimation footnote -->
+    <p class="text-xs text-slate-400 mt-6 text-center italic">
+      * Metrics reflect approximate non-additive investigation counts and hands-on operational activity. Symbols (~ and +) indicate conservative estimates.
+    </p>
+
+  </div>
+</section>

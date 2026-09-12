@@ -1,0 +1,151 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import { projectsData } from "../data/projects";
+---
+
+<section id="projects" class="py-16 md:py-24 border-t border-slate-800/80 bg-slate-950/50 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <SectionHeading 
+      eyebrow="Practical Implementations"
+      title="Hands-On Projects & Labs"
+      description="Hands-on detection environments, security instrumentation, and purpose-built study tools demonstrating practical operational capability."
+    />
+
+    <div class="space-y-12">
+      {projectsData.map((project, index) => (
+        <article class="cyber-card rounded-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden border border-slate-800 hover:border-sky-500/40 transition duration-300">
+          
+          <!-- Card Header & Badge -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+            <div class="space-y-1">
+              <span class="inline-block px-3 py-1 text-xs font-mono font-semibold text-sky-400 bg-sky-950/80 border border-sky-800/60 rounded-full">
+                {project.badge}
+              </span>
+              <h3 class="text-2xl sm:text-3xl font-bold text-slate-100 pt-1">
+                {project.title}
+              </h3>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center gap-3">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold text-slate-900 bg-sky-400 hover:bg-sky-300 rounded-lg transition shadow-md shadow-sky-500/20"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  <span>View Live App</span>
+                </a>
+              )}
+
+              {project.githubUrl && (
+                <a
+                  href={project.isPlaceholderRepo ? "#" : project.githubUrl}
+                  target={project.isPlaceholderRepo ? "_self" : "_blank"}
+                  rel={project.isPlaceholderRepo ? "" : "noopener noreferrer"}
+                  class={`inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg border transition ${
+                    project.isPlaceholderRepo
+                      ? "text-slate-400 bg-slate-900/80 border-slate-800 cursor-not-allowed"
+                      : "text-slate-200 bg-slate-900 hover:bg-slate-800 border-slate-700/80 hover:border-slate-600"
+                  }`}
+                  title={project.isPlaceholderRepo ? "Repository URL will be linked once made public" : "View Source on GitHub"}
+                  onclick={project.isPlaceholderRepo ? "alert('Repository URL is currently being finalized and will be updated soon.'); return false;" : ""}
+                >
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                  <span>{project.isPlaceholderRepo ? "GitHub (Coming Soon)" : "View on GitHub"}</span>
+                </a>
+              )}
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+            {project.description}
+          </p>
+
+          <!-- Architecture Diagram Concept (for SOC Home Lab) -->
+          {project.architectureSteps && (
+            <div class="mb-8 p-5 sm:p-6 rounded-xl bg-slate-900/90 border border-slate-800">
+              <div class="flex items-center gap-2 mb-4 text-xs font-mono uppercase tracking-wider text-sky-400 font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                <span>Lab Telemetry & Attack Architecture Flow</span>
+              </div>
+
+              <!-- Visual Flow Steps -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-center">
+                {project.architectureSteps.map((step, sIdx) => (
+                  <div class="relative p-3 rounded-lg bg-slate-950/80 border border-slate-800 flex flex-col justify-center items-center">
+                    <span class="text-xs font-bold text-slate-200 font-mono">{step.title}</span>
+                    <span class="text-[11px] text-slate-400 mt-1 leading-tight">{step.role}</span>
+                    {sIdx < project.architectureSteps!.length - 1 && (
+                      <span class="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 text-sky-500 font-bold text-xs z-10">
+                        →
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Verified facts for Security+ test engine -->
+          {project.verifiedFacts && (
+            <div class="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+              {project.verifiedFacts.map((fact) => (
+                <div class="p-2.5 rounded-lg bg-slate-900/70 border border-slate-800/80 flex items-center gap-2">
+                  <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fact}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <!-- Key Activities -->
+          <div class="space-y-2 mb-6">
+            <h4 class="text-xs uppercase font-mono tracking-wider text-slate-400 font-semibold">
+              Key Engineering Activities & Investigations
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+              {project.keyActivities.map((activity) => (
+                <div class="flex items-start gap-2 text-xs sm:text-sm text-slate-300">
+                  <span class="text-sky-400 font-bold mt-0.5">•</span>
+                  <span class="leading-relaxed">{activity}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Technologies Footer -->
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex flex-wrap gap-1.5 items-center">
+              <span class="text-xs font-mono text-slate-400 mr-2">Tech Stack:</span>
+              {project.technologies.map((tech) => (
+                <span class="px-2.5 py-1 text-xs rounded bg-slate-900 text-slate-300 border border-slate-800 font-mono">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Trademark Disclaimer (if applicable) -->
+          {project.disclaimer && (
+            <div class="mt-4 pt-3 border-t border-slate-800/60 text-[11px] text-slate-400 leading-relaxed italic">
+              {project.disclaimer}
+            </div>
+          )}
+
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>

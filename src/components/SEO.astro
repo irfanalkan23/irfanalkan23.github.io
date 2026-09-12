@@ -1,0 +1,88 @@
+---
+import { siteConfig } from "../data/config";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  image = `${siteConfig.siteUrl}/images/og-preview.png`,
+  canonical = siteConfig.canonicalUrl,
+} = Astro.props;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Irfan Alkan",
+  "jobTitle": "SOC Team Lead & Senior SOC Analyst",
+  "url": siteConfig.siteUrl,
+  "sameAs": [
+    siteConfig.social.linkedin,
+    siteConfig.social.github,
+    siteConfig.social.himalayas
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Istanbul",
+    "addressCountry": "TR"
+  },
+  "knowsAbout": [
+    "Security Operations Center (SOC)",
+    "Incident Response",
+    "SIEM (IBM QRadar, Splunk)",
+    "EDR (CrowdStrike Falcon)",
+    "Packet Analysis (Wireshark)",
+    "Threat Detection",
+    "Active Directory Security",
+    "Sysmon Telemetry"
+  ],
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "University of Oklahoma"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Turkish Air Force Academy"
+    }
+  ]
+};
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="canonical" href={canonical} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="author" content="Irfan Alkan" />
+<meta name="keywords" content="SOC Analyst, Senior SOC Analyst, SOC Team Lead, Security Operations, Incident Response, Cybersecurity Analyst, Detection Analyst, MDR Analyst, IBM QRadar, Splunk, CrowdStrike Falcon, SIEM, EDR, Cybersecurity Türkiye, Remote Cybersecurity, SOC Türkiye" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#080c14" />
+
+<!-- Open Graph / Facebook / LinkedIn -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:site_name" content="Irfan Alkan Portfolio" />
+
+<!-- Twitter / X -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonical} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={image} />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />

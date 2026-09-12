@@ -1,0 +1,66 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import { certificationsData } from "../data/certifications";
+---
+
+<section id="certifications" class="py-16 md:py-24 border-t border-slate-800/80 bg-slate-950/60 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <SectionHeading 
+      eyebrow="Credentials & Validation"
+      title="Certifications & Continuous Learning"
+      description="Active credentials, validated simulation badges, and ongoing technical development in cybersecurity analysis."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {certificationsData.map((cert) => (
+        <div class="cyber-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between border border-slate-800 hover:border-slate-700 transition">
+          
+          <div class="space-y-4">
+            
+            <!-- Status Badge -->
+            <div class="flex items-center justify-between gap-2">
+              <span class={`px-2.5 py-1 text-xs font-mono font-semibold rounded-md border ${cert.badgeClass}`}>
+                {cert.badgeText}
+              </span>
+              <span class="text-xs text-slate-400 font-mono">
+                {cert.issuer}
+              </span>
+            </div>
+
+            <!-- Certification Title -->
+            <div>
+              <h3 class="text-xl font-bold text-slate-100">
+                {cert.name}
+              </h3>
+              <p class="text-xs text-sky-400 font-mono mt-1">
+                {cert.periodText}
+              </p>
+            </div>
+
+            <!-- Description -->
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              {cert.description}
+            </p>
+
+            <!-- Skills Highlighted -->
+            <div class="pt-3 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+              {cert.skillsHighlighted.map((skill) => (
+                <span class="px-2 py-0.5 text-[11px] rounded bg-slate-900 text-slate-300 border border-slate-800">
+                  {skill}
+                </span>
+              ))}
+            </div>
+
+          </div>
+
+          <div class="mt-6 pt-3 border-t border-slate-800/60 text-[11px] text-slate-400 font-mono">
+            {cert.details}
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
