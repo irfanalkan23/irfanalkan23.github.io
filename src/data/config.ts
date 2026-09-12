@@ -9,8 +9,8 @@ export const siteConfig = {
   name: "Irfan Alkan",
   title: "Irfan Alkan | SOC Team Lead & Senior SOC Analyst",
   description: "SOC Team Lead and Senior SOC Analyst with 4+ years of experience in incident response, SIEM, EDR, IBM QRadar, Splunk, CrowdStrike Falcon, detection, and security operations.",
-  siteUrl: "https://irfanalkan23.github.io",
-  canonicalUrl: "https://irfanalkan23.github.io",
+  siteUrl: "https://irfanalkan.com",
+  canonicalUrl: "https://irfanalkan.com",
   location: "Istanbul, Türkiye",
   workPreference: "Open to Fully Remote Opportunities (Türkiye-friendly)",
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://irfanalkan23.github.io/sitemap-index.xml
+Sitemap: https://irfanalkan.com/sitemap-index.xml
