@@ -4,7 +4,7 @@ A high-performance, enterprise-grade personal cybersecurity portfolio website bu
 
 Designed specifically for recruiters, hiring managers, and technical interviewers reviewing Security Operations Center (SOC), Incident Response (IR), and Detection roles.
 
-- **Live Production URL**: [https://irfanalkan23.github.io](https://irfanalkan23.github.io)
+- **Live Production URL**: [https://irfanalkan.com](https://irfanalkan.com) *(also redirects from [irfanalkan23.github.io](https://irfanalkan23.github.io))*
 - **Repository Name**: `irfanalkan23.github.io`
 - **Target Work Model**: Fully Remote (Candidates based in Türkiye)
 
@@ -213,27 +213,30 @@ If you later choose to use a custom domain such as `irfanalkan.com` or `irfanalk
 1. **Purchase Domain**: Register your domain with any registrar (Cloudflare, Namecheap, Google Domains/Squarespace, etc.).
 2. **Configure DNS Records** at your domain registrar:
    - For an apex domain (`irfanalkan.com`):
-     - Add 4 `A` records pointing to GitHub Pages IP addresses:
+     - Add 4 `A` records pointing to GitHub Pages IP addresses (set initially to **DNS only / Grey Cloud** during SSL generation):
        - `185.199.108.153`
        - `185.199.109.153`
        - `185.199.110.153`
        - `185.199.111.153`
    - For `www` or subdomain (`www.irfanalkan.com` or `irfanalkan.dev`):
-     - Add a `CNAME` record pointing to `irfanalkan23.github.io.`.
+     - Add a `CNAME` record pointing to `irfanalkan23.github.io.` (set initially to **DNS only / Grey Cloud**).
 3. **Configure Domain in GitHub**:
    - In your repository, go to **Settings** > **Pages**.
    - In **Custom domain**, enter your domain name (e.g. `irfanalkan.com`) and click **Save**.
    - Check the box for **Enforce HTTPS** (certificate generates automatically within a few minutes).
-4. **Update Astro Configuration**:
+4. **Cloudflare Proxy & DDoS Protection (Optional)**:
+   > **Note:** GitHub Pages sertifikayı başarıyla oluşturup **Enforce HTTPS** aktif olduktan sonra, dilerseniz Cloudflare'de tekrar **Turuncu Bulut (Proxied)** modunu açıp Cloudflare'in DDoS koruması, WAF ve küresel önbellek avantajlarından faydalanabilirsiniz.
+   > 
+   > **Önemli:** Turuncu Bulut'u açtığınızda yönlendirme döngüsü (redirect loop) yaşamamak için Cloudflare sol menüsünden **SSL/TLS** > **Overview** sayfasına giderek şifreleme modunu **Full (strict)** olarak ayarlamayı unutmayın.
+5. **Update Astro Configuration**:
    - In `astro.config.mjs`, update `site`:
      ```javascript
      export default defineConfig({
-       site: 'https://irfanalkan.com', // your new domain
-       // ...
+       site: 'https://irfanalkan.com',
      });
      ```
    - In `src/data/config.ts`, update `siteUrl` and `canonicalUrl` to `https://irfanalkan.com`.
-5. Commit and push changes to `main`.
+6. Commit and push changes to `main`.
 
 ---
 
